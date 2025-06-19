@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Trails</title> <!-- ✅ Include jsPDF & AutoTable for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Audit Trails</h1> <!-- ✅ Login & Logout Buttons --> 
+    <button id="loginBtn" onclick="login()">Login</button>
+    <button id="logoutBtn" onclick="logout()" style="display: none;">Logout</button> <!-- ✅ Button for PDF Download -->
+    <button onclick="downloadPDF()">Download PDF</button> <!-- ✅ Audit Logs Table -->
+    <table id="logTable">
+        <thead>
+            <tr>
+                <th>Activity</th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Signed</th>
+                <th>Timezone</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody> <!-- Logs will be inserted here dynamically --> </tbody>
+    </table> <!-- ✅ Load JavaScript Files -->
+    <script src="scripts.js" defer></script>
+    <script src="auditlog.js" defer></script>
+    <script> // ✅ Ensure correct button visibility on page load window.onload = function () { if (sessionStorage.getItem("loggedInUser")) { document.getElementById("loginBtn").style.display = "none"; document.getElementById("logoutBtn").style.display = "inline"; } else { document.getElementById("loginBtn").style.display = "inline"; document.getElementById("logoutBtn").style.display = "none"; } loadAuditLogs(); }; </script>
+</body>
+
+</html>
